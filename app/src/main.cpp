@@ -13,6 +13,8 @@
 #ifdef CONFIG_BLINK_SLEEP_2000MS
 #define SLEEP_TIME_MS 2000
 #endif
+#else
+#define SLEEP_TIME_MS CONFIG_APP_HEARTBEAT_PERIOD_MS
 #endif
 
 
@@ -21,7 +23,7 @@
 #endif
 
 /* The devicetree node identifier for the "led0" alias. */
-#define STRIP_NODE DT_ALIAS(led_strip)
+#define STRIP_NODE DT_ALIAS(app_led)
 const struct device * strip = DEVICE_DT_GET(STRIP_NODE);
 
 #define STRIP_NUM_PIXELS 1
@@ -90,6 +92,13 @@ int main(void)
 #else
 
         pixels[0].r = led_state?get_led_level():0;
+        pixels[0].g = 0;
+        pixels[0].b = 0;
+
+        led_strip_update_rgb(strip, pixels, STRIP_NUM_PIXELS);
+
+        k_msleep(100);
+        pixels[0].r = 0;
         pixels[0].g = 0;
         pixels[0].b = 0;
 
