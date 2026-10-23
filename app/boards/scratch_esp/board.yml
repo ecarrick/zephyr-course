@@ -1,0 +1,6 @@
+board:
+  name: scratch_esp
+  full_name: esp32c3 from sctach
+  vendor: custom
+  socs:
+  - name: esp32c3
