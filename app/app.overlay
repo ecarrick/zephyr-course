@@ -34,4 +34,12 @@
 	aliases {
 		app-led = &board_rbg_led;
 	};
+
+	our_driver0: our_driver {
+		compatible = "our,driver";
+		status = "okay";
+		step = <2>;
+		gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
+	};
 };
+

@@ -2,6 +2,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/led_strip.h>
+#include <zephyr/drivers/sensor.h>
 
 #ifdef CONFIG_LED_SUBSYSTEM
 #ifdef CONFIG_BLINK_SLEEP_250MS
@@ -39,6 +40,24 @@ static uint8_t get_led_level(void) {
     return 255;
 #endif
 }
+
+
+namespace {
+    void led_on() {
+        const struct device* driver = DEVICE_DT_GET(DT_NODELABEL(our_driver0));
+        int ret = sensor_sample_fetch(driver);
+        LOG_INF("sensor_sample_fetch ret %d", ret);
+    }
+
+    void led_off() {
+        const struct device* driver = DEVICE_DT_GET(DT_NODELABEL(our_driver0));
+        struct sensor_value val;
+        int ret = sensor_channel_get(driver, SENSOR_CHAN_ALL, &val);
+        LOG_INF("channel ret %d", ret);
+    }
+}
+
+
 
 int main(void)
 {
@@ -96,6 +115,7 @@ int main(void)
         pixels[0].b = 0;
 
         led_strip_update_rgb(strip, pixels, STRIP_NUM_PIXELS);
+        led_on();
 
         k_msleep(100);
         pixels[0].r = 0;
@@ -103,6 +123,7 @@ int main(void)
         pixels[0].b = 0;
 
         led_strip_update_rgb(strip, pixels, STRIP_NUM_PIXELS);
+        led_off();
 
 #endif
         LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
