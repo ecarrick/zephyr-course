@@ -48,20 +48,20 @@ namespace {
     void led_on() {
         const struct device* driver = DEVICE_DT_GET(DT_NODELABEL(our_driver0));
         int ret = sensor_sample_fetch(driver);
-        LOG_INF("sensor_sample_fetch ret %d", ret);
+        // LOG_INF("sensor_sample_fetch ret %d", ret);
     }
 
     void led_off() {
         const struct device* driver = DEVICE_DT_GET(DT_NODELABEL(our_driver0));
         struct sensor_value val;
         int ret = sensor_channel_get(driver, SENSOR_CHAN_ALL, &val);
-        LOG_INF("channel ret %d", ret);
+        // LOG_INF("channel ret %d", ret);
     }
 
     void reset_count() {
         const struct device* driver = DEVICE_DT_GET(DT_NODELABEL(our_driver0));
         int ret = our_driver_restart_count(driver);
-        LOG_INF("channel ret %d", ret);
+        // LOG_INF("channel ret %d", ret);
     }
 }
 
@@ -140,7 +140,7 @@ int main(void)
         }
 
 #endif
-        LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
+        // LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
         k_msleep(SLEEP_TIME_MS);
     }
     return 0;

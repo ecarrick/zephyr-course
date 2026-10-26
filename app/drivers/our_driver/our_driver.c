@@ -9,6 +9,7 @@ LOG_MODULE_REGISTER(our_driver, LOG_LEVEL_INF);
 
 struct our_driver_data {
     uint8_t counter;
+    uint8_t step;
 };
 
 struct our_driver_config {
@@ -19,6 +20,12 @@ struct our_driver_config {
 int our_driver_restart_count(const struct device *dev) {
     struct our_driver_data *data = dev->data;
     data->counter = 0;
+    return 0;
+}
+
+int our_driver_set_skip(const struct device *dev, uint8_t new_step) {
+    struct our_driver_data *data = dev->data;
+    data->step = new_step;
     return 0;
 }
 
