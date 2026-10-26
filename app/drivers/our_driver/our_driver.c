@@ -1,7 +1,7 @@
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/gpio.h>
-
+#include "our_driver.h"
 
 #define DT_DRV_COMPAT our_driver
 
@@ -16,7 +16,11 @@ struct our_driver_config {
     struct gpio_dt_spec led_gpio;
 };
 
-
+int our_driver_restart_count(const struct device *dev) {
+    struct our_driver_data *data = dev->data;
+    data->counter = 0;
+    return 0;
+}
 
 
 static int channel_get_my_impl(const struct device *dev, 
@@ -36,7 +40,10 @@ static int sample_fetch_my_impl(const struct device *dev,
     const struct our_driver_config *cfg = dev->config;
 
     gpio_pin_set_dt(&cfg->led_gpio, 1);
-    LOG_INF("LED SHOULD BE ON");
+    struct our_driver_data *data = dev->data;
+    data->counter = (data->counter < 255) ? data->counter+1 : 255;
+    LOG_INF("LED SHOULD BE ON - count %d", data->counter);
+
     return 0;
 }
 

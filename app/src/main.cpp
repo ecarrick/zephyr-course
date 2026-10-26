@@ -4,6 +4,8 @@
 #include <zephyr/drivers/led_strip.h>
 #include <zephyr/drivers/sensor.h>
 
+#include "our_driver.h"
+
 #ifdef CONFIG_LED_SUBSYSTEM
 #ifdef CONFIG_BLINK_SLEEP_250MS
 #define SLEEP_TIME_MS 250
@@ -55,6 +57,12 @@ namespace {
         int ret = sensor_channel_get(driver, SENSOR_CHAN_ALL, &val);
         LOG_INF("channel ret %d", ret);
     }
+
+    void reset_count() {
+        const struct device* driver = DEVICE_DT_GET(DT_NODELABEL(our_driver0));
+        int ret = our_driver_restart_count(driver);
+        LOG_INF("channel ret %d", ret);
+    }
 }
 
 
@@ -62,6 +70,7 @@ namespace {
 int main(void)
 {
     bool led_state = true;
+    uint8_t count = 0;
 
     if (!device_is_ready(strip)) return 0;
 
@@ -124,6 +133,11 @@ int main(void)
 
         led_strip_update_rgb(strip, pixels, STRIP_NUM_PIXELS);
         led_off();
+
+        count++;
+        if (count > 20) {
+            reset_count();
+        }
 
 #endif
         LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
