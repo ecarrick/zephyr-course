@@ -28,6 +28,7 @@ if LED_SUBSYSTEM
         config LED_BRIGHTNESS
             int "LED brightness (0-100)"
             default 100
+            range 0 100
 
         config LED_FADE_DURATION_MS
             int "LED fade duration (0-5000)"
