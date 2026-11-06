@@ -11,6 +11,9 @@ if LED_SUBSYSTEM
     config BLINK_SLEEP_250MS
         bool "Fast (250ms)"
 
+    config BLINK_SLEEP_500MS
+        bool "Quick (500ms)"
+
     config BLINK_SLEEP_1000MS
         bool "Medium (1s)"
 
@@ -18,6 +21,14 @@ if LED_SUBSYSTEM
         bool "Slow (2s)"
 
     endchoice
+
+    config BLINK_SLEEP_TIME_MS  # use this in code
+        int  # <-- No prompt = hidden!
+        default 250  if BLINK_SLEEP_250MS
+        default 500  if BLINK_SLEEP_500MS
+        default 1000 if BLINK_SLEEP_1000MS
+        default 2000 if BLINK_SLEEP_2000MS
+        default 0
 
     menuconfig LED_ADVANCED
         bool "Advanced LED settings"
@@ -35,23 +46,22 @@ if LED_SUBSYSTEM
             default 500
             range 0 5000
 
-        menu "Expert settings"
-            visible if LED_ADVANCED
+
+    endif # LED_ADVANCED
+
+    menu "Expert settings"
+        visible if LED_ADVANCED
 
 
 
-            config LED_DEBUG
-                bool "Enable LED debugging"
-                # Does NOT get depends on LED_ADVANCED!
+        config LED_DEBUG
+            bool "Enable LED debugging"
+            # Does NOT get depends on LED_ADVANCED!
 
-            config LED_CUSTOM
-                bool "Enable LED custom pattern"
+        config LED_CUSTOM
+            bool "Enable LED custom pattern"
 
-        endmenu
-
-    endif # LED_SUBSYSTEM
-
-
+    endmenu
 
 
 

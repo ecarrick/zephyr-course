@@ -4,15 +4,7 @@
 #include <zephyr/drivers/led_strip.h>
 
 #ifdef CONFIG_LED_SUBSYSTEM
-#ifdef CONFIG_BLINK_SLEEP_250MS
-#define SLEEP_TIME_MS 250
-#endif
-#ifdef CONFIG_BLINK_SLEEP_1000MS
-#define SLEEP_TIME_MS 1000
-#endif
-#ifdef CONFIG_BLINK_SLEEP_2000MS
-#define SLEEP_TIME_MS 2000
-#endif
+#define SLEEP_TIME_MS CONFIG_BLINK_SLEEP_TIME_MS
 #endif
 
 
