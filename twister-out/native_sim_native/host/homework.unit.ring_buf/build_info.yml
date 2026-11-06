@@ -1,0 +1,46 @@
+cmake:
+  application:
+    configuration-dir: '/home/edison/source/iomico-fund/zephyr-course/tests/ring_buf'
+    source-dir: '/home/edison/source/iomico-fund/zephyr-course/tests/ring_buf'
+  board:
+    name: 'native_sim'
+    path:
+     - '/home/edison/source/iomico-fund/deps/zephyr/boards/native/native_sim'
+    qualifiers: 'native'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/bindings'
+    files:
+     - '/home/edison/source/iomico-fund/deps/zephyr/boards/native/native_sim/native_sim.dts'
+    include-dirs:
+     - '/home/edison/source/iomico-fund/deps/modules/hal/nxp/dts'
+     - '/home/edison/source/iomico-fund/deps/modules/hal/stm32/dts'
+     - '/home/edison/source/iomico-fund/deps/zephyr/include'
+     - '/home/edison/source/iomico-fund/deps/zephyr/include/zephyr'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/common'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/vendor'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/rx'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/x86'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/xtensa'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/sparc'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/riscv'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/posix'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/arm64'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/arm'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts/arc'
+     - '/home/edison/source/iomico-fund/deps/zephyr/dts'
+  kconfig:
+    files:
+     - '/home/edison/source/iomico-fund/deps/zephyr/boards/native/native_sim/native_sim_defconfig'
+     - '/home/edison/source/iomico-fund/zephyr-course/tests/ring_buf/prj.conf'
+     - '/home/edison/source/iomico-fund/zephyr-course/twister-out/native_sim_native/host/homework.unit.ring_buf/zephyr/misc/generated/extra_kconfig_options.conf'
+    user-files:
+     - '/home/edison/source/iomico-fund/zephyr-course/tests/ring_buf/prj.conf'
+  toolchain:
+    name: 'host'
+    path: ''
+  zephyr:
+    version: '4.2.0'
+    zephyr-base: '/home/edison/source/iomico-fund/deps/zephyr'
+version: '0.1.0'

@@ -1,0 +1,39 @@
+menu "cmsis_6 (/home/edison/source/iomico-fund/deps/modules/hal/cmsis_6)"
+osource "$(ZEPHYR_CMSIS_6_KCONFIG)"
+config ZEPHYR_CMSIS_6_MODULE
+	bool
+	default y
+endmenu
+menu "hal_espressif (/home/edison/source/iomico-fund/deps/modules/hal/espressif)"
+osource "/home/edison/source/iomico-fund/deps/modules/hal/espressif/zephyr/Kconfig"
+config ZEPHYR_HAL_ESPRESSIF_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_ESPRESSIF_MODULE_BLOBS
+	bool
+endmenu
+menu "hal_nordic (/home/edison/source/iomico-fund/deps/modules/hal/nordic)"
+osource "$(ZEPHYR_HAL_NORDIC_KCONFIG)"
+config ZEPHYR_HAL_NORDIC_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_NORDIC_MODULE_BLOBS
+	bool
+endmenu
+menu "hal_nxp (/home/edison/source/iomico-fund/deps/modules/hal/nxp)"
+osource "$(ZEPHYR_HAL_NXP_KCONFIG)"
+config ZEPHYR_HAL_NXP_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_NXP_MODULE_BLOBS
+	bool
+endmenu
+config ZEPHYR_HAL_STM32_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_STM32_MODULE_BLOBS
+	bool

@@ -1,0 +1,5 @@
+"cmsis_6":"/home/edison/source/iomico-fund/deps/modules/hal/cmsis_6":"${ZEPHYR_CMSIS_6_CMAKE_DIR}"
+"hal_espressif":"/home/edison/source/iomico-fund/deps/modules/hal/espressif":"/home/edison/source/iomico-fund/deps/modules/hal/espressif/zephyr"
+"hal_nordic":"/home/edison/source/iomico-fund/deps/modules/hal/nordic":"${ZEPHYR_HAL_NORDIC_CMAKE_DIR}"
+"hal_nxp":"/home/edison/source/iomico-fund/deps/modules/hal/nxp":"${ZEPHYR_HAL_NXP_CMAKE_DIR}"
+"hal_stm32":"/home/edison/source/iomico-fund/deps/modules/hal/stm32":"/home/edison/source/iomico-fund/deps/modules/hal/stm32"
